@@ -6,6 +6,12 @@ import ExpenseTotal from "./components/ExpenseTotal";
 import ExpenseList from "./components/ExpenseList";
 import AddExpenseForm from "./components/AddExpenseForm";
 import SearchBar from "./components/SearchBar";
+import BudgetProgress from "./components/BudgetProgress";
+import SavingsGoal from "./components/SavingGoal";
+import MonthlyBudgetCycle from "./components/MonthlyBudgetCycle";
+import MonthDisplay from "./components/MonthDisplay";
+import SalaryDateSettings from "./components/SalaryDateSettings";
+import MonthlyHistory from "./components/MonthlyHistory";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -13,6 +19,10 @@ const App = () => {
   return (
     <div className="container">
       <h1 className="mt-3">Expenza</h1>
+
+      <MonthDisplay />
+      <SalaryDateSettings />
+
       <div className="row mt-3">
         <div className="col-sm">
           <Budget />
@@ -25,6 +35,25 @@ const App = () => {
         </div>
       </div>
 
+      <div className="row mt-3">
+        <div className="col-md-4">
+          <BudgetProgress />
+        </div>
+        <div className="col-md-4">
+          <SavingsGoal />
+        </div>
+        <div className="col-md-4">
+          <MonthlyBudgetCycle />
+        </div>
+      </div>
+
+      <h3 className="mt-3">Expenses</h3>
+      <div className="row mt-3">
+        <div className="col-sm">
+          <AddExpenseForm />
+        </div>
+      </div>
+
       <h3 className="mt-3">History</h3>
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <div className="row">
@@ -32,12 +61,8 @@ const App = () => {
           <ExpenseList searchTerm={searchTerm} />
         </div>
       </div>
-      <h3 className="mt-3">Add Expense</h3>
-      <div className="row mt-3">
-        <div className="col-sm">
-          <AddExpenseForm />
-        </div>
-      </div>
+
+      <MonthlyHistory />
     </div>
   );
 };
