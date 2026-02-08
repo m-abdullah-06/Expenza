@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Budget from "./components/Budget";
+import Remaining from "./components/Remaining";
+import ExpenseTotal from "./components/ExpenseTotal";
+import ExpenseList from "./components/ExpenseList";
+import AddExpenseForm from "./components/AddExpenseForm";
+import SearchBar from "./components/SearchBar";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [searchTerm, setSearchTerm] = useState("");
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="container">
+      <h1 className="mt-3">Expenza</h1>
+      <div className="row mt-3">
+        <div className="col-sm">
+          <Budget />
+        </div>
+        <div className="col-sm">
+          <Remaining />
+        </div>
+        <div className="col-sm">
+          <ExpenseTotal />
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
 
-export default App
+      <h3 className="mt-3">History</h3>
+      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      <div className="row">
+        <div className="col-sm">
+          <ExpenseList searchTerm={searchTerm} />
+        </div>
+      </div>
+      <h3 className="mt-3">Add Expense</h3>
+      <div className="row mt-3">
+        <div className="col-sm">
+          <AddExpenseForm />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default App;
