@@ -15,20 +15,26 @@ const ExpenseItem = ({ id, name, cost, isHistory }) => {
   };
 
   return (
-    <li className="list-group-item d-flex justify-content-between align-items-center">
-      {name}
+    <li className="list-group-item d-flex justify-content-between align-items-center py-3">
       <div>
-        <span className="badge bg-primary rounded-pill">
+        <span className="fw-semibold">{name}</span>
+      </div>
+
+      <div className="d-flex align-items-center gap-3">
+        <span className="badge bg-[#1e1e1e] text-light fs-6 px-3 py-2">
           {currency}
           {cost}
-          {!isHistory && (
-            <TiDelete
-              size="1.5em"
-              onClick={handleDelete}
-              style={{ cursor: "pointer", marginLeft: "5px" }}
-            />
-          )}
         </span>
+
+        {!isHistory && (
+          <TiDelete
+            size="1.4em"
+            onClick={handleDelete}
+            style={{ cursor: "pointer", opacity: 0.7 }}
+            onMouseEnter={(e) => (e.target.style.opacity = 1)}
+            onMouseLeave={(e) => (e.target.style.opacity = 0.7)}
+          />
+        )}
       </div>
     </li>
   );

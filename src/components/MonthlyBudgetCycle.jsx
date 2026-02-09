@@ -42,57 +42,58 @@ const MonthlyBudgetCycle = () => {
   }
 
   return (
-    <div className="mt-3">
-      <h5>Monthly Budget Cycle</h5>
-      <div className="mb-2">
-        <small className="text-muted">
-          Day {currentDay} of {daysInMonth} ({monthProgress.toFixed(1)}% through
-          the month)
-        </small>
-      </div>
+    <div className="card shadow-sm mt-3 border-0">
+      <div className="card-body">
+        {/* Header */}
+        <div className="mb-3">
+          <h5 className="mb-0 fw-semibold">Monthly Budget Cycle</h5>
+          <small className="text-muted">
+            Day {currentDay} of {daysInMonth} • {monthProgress.toFixed(0)}%
+            through the month
+          </small>
+        </div>
 
-      {/* Month Progress Bar */}
-      <div className="mb-2">
-        <label className="form-label small">Time Progress</label>
-        <div className="progress" style={{ height: "20px" }}>
-          <div
-            className="progress-bar bg-secondary"
-            role="progressbar"
-            style={{ width: `${monthProgress}%` }}
-            aria-valuenow={monthProgress}
-            aria-valuemin="0"
-            aria-valuemax="100"
-          >
-            {monthProgress.toFixed(0)}%
+        {/* Time Progress */}
+        <div className="mb-3">
+          <div className="d-flex justify-content-between mb-1">
+            <small className="fw-semibold text-muted">Time Progress</small>
+            <small className="text-muted">{monthProgress.toFixed(0)}%</small>
+          </div>
+          <div className="progress" style={{ height: "18px" }}>
+            <div
+              className="progress-bar bg-secondary"
+              role="progressbar"
+              style={{ width: `${monthProgress}%` }}
+            />
           </div>
         </div>
-      </div>
 
-      {/* Spending Progress Bar */}
-      <div className="mb-2">
-        <label className="form-label small">Spending Progress</label>
-        <div className="progress" style={{ height: "20px" }}>
-          <div
-            className={`progress-bar bg-${isOnTrack ? "success" : "danger"}`}
-            role="progressbar"
-            style={{ width: `${Math.min(spendingProgress, 100)}%` }}
-            aria-valuenow={spendingProgress}
-            aria-valuemin="0"
-            aria-valuemax="100"
-          >
-            {spendingProgress.toFixed(0)}%
+        {/* Spending Progress */}
+        <div className="mb-3">
+          <div className="d-flex justify-content-between mb-1">
+            <small className="fw-semibold text-muted">Spending Progress</small>
+            <small className="text-muted">{spendingProgress.toFixed(0)}%</small>
+          </div>
+          <div className="progress" style={{ height: "18px" }}>
+            <div
+              className={`progress-bar ${
+                isOnTrack ? "bg-success" : "bg-danger"
+              }`}
+              role="progressbar"
+              style={{ width: `${Math.min(spendingProgress, 100)}%` }}
+            />
           </div>
         </div>
-      </div>
 
-      <div className={`alert alert-${statusColor} py-2 mb-0`}>
-        <strong>{statusMessage}</strong>
-        <br />
-        <small>
-          {isOnTrack
-            ? `You're ${(monthProgress - spendingProgress).toFixed(1)}% under pace. Keep it up!`
-            : `You're ${(spendingProgress - monthProgress).toFixed(1)}% over pace for this point in the month.`}
-        </small>
+        {/* Status Box */}
+        <div className={`alert alert-${statusColor} py-2 mb-0`}>
+          <div className="fw-semibold">{statusMessage}</div>
+          <small>
+            {isOnTrack
+              ? `You're ${(monthProgress - spendingProgress).toFixed(1)}% under pace.`
+              : `You're ${(spendingProgress - monthProgress).toFixed(1)}% over pace.`}
+          </small>
+        </div>
       </div>
     </div>
   );

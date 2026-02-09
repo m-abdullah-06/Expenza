@@ -22,47 +22,54 @@ const Budget = () => {
   };
 
   return (
-    <div className="alert alert-secondary d-flex justify-content-between align-items-center">
-      {isEditing ? (
-        <div className="d-flex align-items-center gap-2 w-100">
-          <select
-            className="form-select"
-            style={{ width: "80px" }}
-            value={currency}
-            onChange={(e) => handleCurrencyChange(e.target.value)}
-          >
-            <option value="$">$ (USD)</option>
-            <option value="₹">₹ (INR)</option>
-            <option value="€">€ (EUR)</option>
-            <option value="£">£ (GBP)</option>
-            <option value="¥">¥ (JPY)</option>
-            <option value="₽">₽ (RUB)</option>
-            <option value="PKR">PKR (PKR)</option>
-          </select>
-          <input
-            type="number"
-            className="form-control"
-            value={newBudget}
-            onChange={(e) => setNewBudget(e.target.value)}
-          />
-          <button className="btn btn-primary btn-sm" onClick={handleSave}>
-            Save
-          </button>
-        </div>
-      ) : (
-        <>
-          <span>
-            Budget: {currency}
-            {budget}
-          </span>
-          <button
-            className="btn btn-primary btn-sm"
-            onClick={() => setIsEditing(true)}
-          >
-            Edit
-          </button>
-        </>
-      )}
+    <div className="card stat-card h-100">
+      <div className="card-body d-flex justify-content-between align-items-center">
+        {isEditing ? (
+          <div className="d-flex align-items-center gap-2 w-100">
+            <select
+              className="form-select form-select-sm"
+              style={{ width: "90px" }}
+              value={currency}
+              onChange={(e) => handleCurrencyChange(e.target.value)}
+            >
+              <option value="$">$</option>
+              <option value="₹">₹</option>
+              <option value="€">€</option>
+              <option value="£">£</option>
+              <option value="¥">¥</option>
+              <option value="₽">₽</option>
+              <option value="PKR">PKR</option>
+            </select>
+
+            <input
+              type="number"
+              className="form-control form-control-sm"
+              value={newBudget}
+              onChange={(e) => setNewBudget(e.target.value)}
+            />
+
+            <button className="btn btn-primary btn-sm" onClick={handleSave}>
+              Save
+            </button>
+          </div>
+        ) : (
+          <>
+            <div>
+              <p className="stat-label mb-1">💰 Total Budget</p>
+              <h3 className="stat-value text-primary mb-0">
+                {currency} {budget}
+              </h3>
+            </div>
+
+            <button
+              className="btn btn-outline-primary btn-sm"
+              onClick={() => setIsEditing(true)}
+            >
+              Edit
+            </button>
+          </>
+        )}
+      </div>
     </div>
   );
 };

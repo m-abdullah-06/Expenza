@@ -15,24 +15,27 @@ const SalaryDateSettings = () => {
   };
 
   return (
-    <div className="alert alert-light d-flex justify-content-between align-items-center">
+    <div className="salary-row d-flex justify-content-between align-items-start pt-3 rounded-3 bg-[#0f0f0f] shadow-sm">
       {isEditing ? (
-        <div className="d-flex align-items-center gap-2 w-100">
-          <span>Salary Date (Day of Month):</span>
+        <div className="d-flex align-items-start gap-2">
+          <span className="fw-semibold">Salary Date:</span>
+
           <input
             type="number"
-            className="form-control"
-            style={{ width: "100px" }}
+            className="form-control form-control-sm"
+            style={{ width: "90px" }}
             min="1"
             max="31"
             value={newDate}
             onChange={(e) => setNewDate(e.target.value)}
           />
+
           <button className="btn btn-primary btn-sm" onClick={handleSave}>
             Save
           </button>
+
           <button
-            className="btn btn-secondary btn-sm"
+            className="btn btn-outline-secondary btn-sm"
             onClick={() => setIsEditing(false)}
           >
             Cancel
@@ -40,10 +43,14 @@ const SalaryDateSettings = () => {
         </div>
       ) : (
         <>
-          <span>
-            💰 Salary Date: {salaryDate}
-            {getOrdinalSuffix(salaryDate)} of every month
-          </span>
+          <div>
+            <div className="text-muted small">Salary Date</div>
+            <div className="fw-bold mt-3">
+              💰 {salaryDate}
+              {getOrdinalSuffix(salaryDate)} of every month
+            </div>
+          </div>
+
           <button
             className="btn btn-outline-primary btn-sm"
             onClick={() => setIsEditing(true)}

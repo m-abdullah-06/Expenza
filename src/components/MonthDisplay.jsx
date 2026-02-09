@@ -29,13 +29,13 @@ const MonthDisplay = () => {
   const displayYear = viewingHistory ? viewingYear : currentYear;
 
   return (
-    <div className="alert alert-info text-center">
-      <h3 className="mb-0">
+    <div className="month-pill">
+      <h5 className="mb-0">
         {viewingHistory && (
           <span className="badge bg-warning me-2">History</span>
         )}
         {monthNames[displayMonth]} {displayYear}
-      </h3>
+      </h5>
     </div>
   );
 };

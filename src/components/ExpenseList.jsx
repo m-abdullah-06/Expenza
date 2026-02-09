@@ -16,29 +16,32 @@ const ExpenseList = ({ searchTerm = "" }) => {
   return (
     <>
       {viewingHistory && (
-        <div className="alert alert-warning mb-3">
-          <strong>📖 Viewing History Mode</strong> - You cannot edit expenses
+        <div className="alert alert-warning mb-3 shadow-sm mt-4">
+          <strong>📖 Viewing History Mode</strong> — You cannot edit expenses
           from previous months.
         </div>
       )}
+
       {filteredExpenses.length === 0 && searchTerm !== "" ? (
-        <div className="alert alert-info">
+        <div className="alert alert-info shadow-sm">
           No expenses found matching "{searchTerm}"
         </div>
       ) : filteredExpenses.length === 0 ? (
-        <div className="alert alert-info">No expenses added yet</div>
+        <div className="alert alert-info shadow-sm">No expenses added yet</div>
       ) : (
-        <ul className="list-group">
-          {filteredExpenses.map((expense) => (
-            <ExpenseItem
-              key={expense.id}
-              id={expense.id}
-              name={expense.charge}
-              cost={expense.amount}
-              isHistory={viewingHistory}
-            />
-          ))}
-        </ul>
+        <div className="card border-0 shadow-sm">
+          <ul className="list-group list-group-flush">
+            {filteredExpenses.map((expense) => (
+              <ExpenseItem
+                key={expense.id}
+                id={expense.id}
+                name={expense.charge}
+                cost={expense.amount}
+                isHistory={viewingHistory}
+              />
+            ))}
+          </ul>
+        </div>
       )}
     </>
   );

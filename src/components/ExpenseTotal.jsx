@@ -8,10 +8,14 @@ const ExpenseTotal = () => {
   }, 0);
 
   return (
-    <div className="alert alert-primary">
-      <span>
-        Spent so far: {currency} {total}
-      </span>
+    <div className="alert alert-primary card stat-card h-100">
+      <div className="card-body d-flex flex-column justify-content-center">
+        <span className="stat-label mb-1">Spent so far:</span>
+        <span className="stat-value text-primary mb-0">
+          {currency}
+          {total}
+        </span>
+      </div>
     </div>
   );
 };

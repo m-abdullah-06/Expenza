@@ -23,33 +23,46 @@ const AddExpenseForm = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <div className="row">
-        <div className="col-sm">
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            className="form-control"
-            id="name"
-            required="required"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-        <div className="col-sm">
-          <label htmlFor="cost">Cost</label>
-          <input
-            type="text"
-            className="form-control"
-            id="cost"
-            required="required"
-            value={cost}
-            onChange={(e) => setCost(e.target.value)}
-          />
-        </div>
-        <div className="col-sm">
-          <button type="submit" className="btn btn-primary mt-4">
-            Save
-          </button>
+      <div className="card border-0 shadow-sm p-3">
+        <div className="row g-3 align-items-end">
+          <div className="col-md-5">
+            <label htmlFor="name" className="form-label fw-semibold text-muted">
+              Expense Name
+            </label>
+            <input
+              type="text"
+              className="form-control form-control-lg"
+              id="name"
+              required="required"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Groceries, Rent, Fuel..."
+            />
+          </div>
+
+          <div className="col-md-4">
+            <label htmlFor="cost" className="form-label fw-semibold text-muted">
+              Cost
+            </label>
+            <input
+              type="text"
+              className="form-control form-control-lg"
+              id="cost"
+              required="required"
+              value={cost}
+              onChange={(e) => setCost(e.target.value)}
+              placeholder="500"
+            />
+          </div>
+
+          <div className="col-md-3 d-grid">
+            <button
+              type="submit"
+              className="btn btn-primary btn-lg fw-semibold"
+            >
+              + Add Expense
+            </button>
+          </div>
         </div>
       </div>
     </form>

@@ -12,16 +12,21 @@ import MonthlyBudgetCycle from "./components/MonthlyBudgetCycle";
 import MonthDisplay from "./components/MonthDisplay";
 import SalaryDateSettings from "./components/SalaryDateSettings";
 import MonthlyHistory from "./components/MonthlyHistory";
+import "./index.css";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
     <div className="container">
-      <h1 className="mt-3">Expenza</h1>
-
-      <MonthDisplay />
-      <SalaryDateSettings />
+      <header className="app-header">
+        <div className="header-top">
+          <h1 className="app-title">Expenza</h1>
+          <p className="app-subtitle">Track Smarter. Save better.</p>
+        </div>
+        <MonthDisplay />
+        <SalaryDateSettings />
+      </header>
 
       <div className="row mt-3">
         <div className="col-sm">
@@ -47,14 +52,15 @@ const App = () => {
         </div>
       </div>
 
-      <h3 className="mt-3">Expenses</h3>
+      <h3 className="mt-4 fw-bold">Add Expense</h3>
+
       <div className="row mt-3">
         <div className="col-sm">
           <AddExpenseForm />
         </div>
       </div>
 
-      <h3 className="mt-3">History</h3>
+      <h3 className="mt-4 fw-bold">Expenses</h3>
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <div className="row">
         <div className="col-sm">

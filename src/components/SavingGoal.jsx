@@ -26,49 +26,76 @@ const SavingsGoal = () => {
   };
 
   return (
-    <div className="mt-3">
-      <div className="d-flex justify-content-between align-items-center mb-2">
-        <h5 className="mb-0">Savings Goal</h5>
-        {isEditing ? (
-          <div className="d-flex gap-2">
-            <input
-              type="number"
-              className="form-control form-control-sm"
-              style={{ width: "120px" }}
-              value={goalAmount}
-              onChange={(e) => setGoalAmount(parseInt(e.target.value))}
-              placeholder="Goal amount"
-            />
-            <button className="btn btn-primary btn-sm" onClick={handleSave}>
-              Save
-            </button>
+    <div className="card shadow-sm mt-3 border-0">
+      <div className="card-body">
+        {/* Header */}
+        <div className="d-flex justify-content-between align-items-center mb-3">
+          <div>
+            <h5 className="mb-0 fw-semibold">Savings Goal</h5>
+            <small className="text-muted">
+              Track how much you can save this month
+            </small>
           </div>
-        ) : (
-          <button
-            className="btn btn-outline-primary btn-sm"
-            onClick={() => setIsEditing(true)}
-          >
-            Set Goal
-          </button>
-        )}
-      </div>
-      <div className="progress" style={{ height: "30px" }}>
-        <div
-          className={`progress-bar ${progressBarColor}`}
-          role="progressbar"
-          style={{ width: `${cappedProgress}%` }}
-          aria-valuenow={cappedProgress}
-          aria-valuemin="0"
-          aria-valuemax="100"
-        >
-          {cappedProgress.toFixed(1)}%
+
+          {isEditing ? (
+            <div className="d-flex gap-2">
+              <input
+                type="number"
+                className="form-control form-control-sm"
+                style={{ width: "130px" }}
+                value={goalAmount}
+                onChange={(e) => setGoalAmount(parseInt(e.target.value))}
+                placeholder="Goal amount"
+              />
+              <button className="btn btn-primary btn-sm" onClick={handleSave}>
+                Save
+              </button>
+            </div>
+          ) : (
+            <button
+              className="btn btn-outline-primary btn-sm"
+              onClick={() => setIsEditing(true)}
+            >
+              Set Goal
+            </button>
+          )}
         </div>
+
+        {/* Progress Bar */}
+        <div className="progress mb-2" style={{ height: "22px" }}>
+          <div
+            className={`progress-bar ${progressBarColor} fw-semibold`}
+            role="progressbar"
+            style={{ width: `${cappedProgress}%` }}
+          >
+            {cappedProgress.toFixed(0)}%
+          </div>
+        </div>
+
+        {/* Info Text */}
+        <div className="d-flex justify-content-between">
+          <small className="text-muted">
+            Saved:{" "}
+            <strong>
+              {currency}
+              {remaining}
+            </strong>
+          </small>
+          <small className="text-muted">
+            Goal:{" "}
+            <strong>
+              {currency}
+              {goalAmount}
+            </strong>
+          </small>
+        </div>
+
+        <small className="text-muted d-block mt-2">
+          {remaining >= goalAmount
+            ? `🎉 Goal reached! You saved ${currency}${remaining}`
+            : `Need ${currency}${goalAmount - remaining} more to reach your goal`}
+        </small>
       </div>
-      <small className="text-muted">
-        {remaining >= goalAmount
-          ? `🎉 Goal reached! Saved ${currency}${remaining} of ${currency}${goalAmount}`
-          : `$${remaining} saved of ${currency}${goalAmount} goal (Need ${currency}${goalAmount - remaining} more)`}
-      </small>
     </div>
   );
 };

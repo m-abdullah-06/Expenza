@@ -38,7 +38,7 @@ const MonthlyHistory = () => {
 
   if (monthlyHistory.length === 0) {
     return (
-      <div className="alert alert-info">
+      <div className="alert alert-info mt-3">
         <p className="mb-0">
           📊 No history yet. Your expense history will appear here after the
           first month.
@@ -49,44 +49,61 @@ const MonthlyHistory = () => {
 
   return (
     <div className="mt-4">
-      <div className="d-flex justify-content-between align-items-center mb-3">
-        <h4>📜 Monthly History</h4>
+      <div className="d-flex justify-content-between align-items-center mb-3 mt-4">
+        <h4 className="fw-bold mb-0">Monthly History</h4>
+
         {viewingHistory && (
-          <button className="btn btn-primary" onClick={handleExitHistory}>
+          <button
+            className="btn btn-primary shadow-sm"
+            onClick={handleExitHistory}
+          >
             ← Back to Current Month
           </button>
         )}
       </div>
 
-      <div className="row">
+      <div className="row g-3">
         {monthlyHistory
           .slice()
           .reverse()
           .map((monthData, index) => (
-            <div key={index} className="col-md-4 mb-3">
-              <div className="card">
+            <div key={index} className="col-md-4">
+              <div className="card border-0 shadow-sm h-100">
                 <div className="card-body">
-                  <h5 className="card-title">
+                  <h5 className="card-title fw-semibold mb-3">
                     {monthNames[monthData.month]} {monthData.year}
                   </h5>
-                  <p className="card-text">
-                    <strong>Budget:</strong> {currency}
+
+                  <div className="small text-muted mb-2">Budget</div>
+                  <div className="fw-semibold mb-2">
+                    {currency}
                     {monthData.budget}
-                    <br />
-                    <strong>Spent:</strong> {currency}
+                  </div>
+
+                  <div className="small text-muted mb-2">Spent</div>
+                  <div className="fw-semibold mb-2">
+                    {currency}
                     {monthData.totalSpent}
-                    <br />
-                    <strong>Saved:</strong> {currency}
+                  </div>
+
+                  <div className="small text-muted mb-2">Saved</div>
+                  <div className="fw-semibold mb-3">
+                    {currency}
                     {monthData.budget - monthData.totalSpent}
-                    <br />
-                    <strong>Expenses:</strong> {monthData.expenses.length}
-                  </p>
-                  <button
-                    className="btn btn-outline-primary btn-sm"
-                    onClick={() => handleViewMonth(monthData)}
-                  >
-                    View Details
-                  </button>
+                  </div>
+
+                  <div className="d-flex justify-content-between align-items-center">
+                    <span className="badge bg-light text-dark">
+                      {monthData.expenses.length} expenses
+                    </span>
+
+                    <button
+                      className="btn btn-outline-primary btn-sm"
+                      onClick={() => handleViewMonth(monthData)}
+                    >
+                      View
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

@@ -20,25 +20,27 @@ const BudgetProgress = () => {
   }
 
   return (
-    <div className="mt-3">
-      <h5>Budget Usage</h5>
-      <div className="progress" style={{ height: "30px" }}>
-        <div
-          className={`progress-bar ${progressBarColor}`}
-          role="progressbar"
-          style={{ width: `${percentage}%` }}
-          aria-valuenow={percentage}
-          aria-valuemin="0"
-          aria-valuemax="100"
-        >
-          {percentage.toFixed(1)}%
+    <div className="card stat-card mt-3">
+      <div className="card-body">
+        <div className="d-flex justify-content-between align-items-center mb-2">
+          <span className="fw-semibold">📊 Budget Usage</span>
+          <span className="fw-bold">{percentage.toFixed(1)}%</span>
+        </div>
+
+        <div className="progress modern-progress">
+          <div
+            className={`progress-bar ${progressBarColor}`}
+            role="progressbar"
+            style={{ width: `${percentage}%` }}
+          />
+        </div>
+
+        <div className="mt-2 text-muted small">
+          {percentage >= 100
+            ? "⚠️ Budget exceeded!"
+            : `${(100 - percentage).toFixed(1)}% remaining`}
         </div>
       </div>
-      <small className="text-muted">
-        {percentage >= 100
-          ? "Budget exceeded!"
-          : `${(100 - percentage).toFixed(1)}% remaining`}
-      </small>
     </div>
   );
 };
