@@ -218,8 +218,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Your Name**
 - GitHub: [@m-abdullah-06](https://github.comm-abdullah-06)
-- LinkedIn: [Your LinkedIn](https://www.linkedin.com/in/muhammad-abdullah-09390938a/)
-- Email: your.email@example.com
+- LinkedIn: [Muhammad Abdullah](https://www.linkedin.com/in/muhammad-abdullah-09390938a/)
+- Email: abdullah.muhammad.xyz@gmail.com
 
 ## 🙏 Acknowledgments
 
