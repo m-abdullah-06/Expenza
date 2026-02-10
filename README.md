@@ -41,8 +41,8 @@ A modern, feature-rich personal finance tracker built with React. Track your exp
 
 ## 🚀 Demo
 
-![Expenza Screenshot](screenshot.png)
-*Add a screenshot of your app here*
+![Expenza Screenshot](/src/assets/desktopss.png)
+
 
 ## 🛠️ Tech Stack
 
