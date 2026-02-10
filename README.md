@@ -230,13 +230,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📸 Screenshots
 
 ### Dashboard
-![Dashboard](screenshots/dashboard.png)
-
-### Expense History
-![History](screenshots/history.png)
+![Dashboard](/src/assets/desktopss.png)
 
 ### Mobile View
-![Mobile](screenshots/mobile.png)
+![Mobile](/src/assets/mobiless.png)
 
 ---
 
