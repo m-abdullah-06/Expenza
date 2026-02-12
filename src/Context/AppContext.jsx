@@ -69,6 +69,12 @@ const AppReducer = (state, action) => {
         viewingExpenses: [],
         viewingBudget: 0,
       };
+
+    case "SET_SAVINGS_GOAL": // ADD THIS CASE
+      return {
+        ...state,
+        savingsGoal: action.payload,
+      };
     default:
       return state;
   }
@@ -130,6 +136,7 @@ const getInitialState = () => {
     viewingYear: null,
     viewingExpenses: [],
     viewingBudget: 0,
+    savingsGoal: 5000,
   };
 };
 
@@ -178,6 +185,7 @@ export const AppProvider = (props) => {
         salaryDate: state.salaryDate,
         currentMonth: state.currentMonth,
         currentYear: state.currentYear,
+        savingsGoal: state.savingsGoal,
         monthlyHistory: state.monthlyHistory,
         viewingHistory: state.viewingHistory,
         viewingMonth: state.viewingMonth,

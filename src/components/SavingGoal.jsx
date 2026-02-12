@@ -2,16 +2,17 @@ import React, { useContext, useState } from "react";
 import { AppContext } from "../Context/AppContext";
 
 const SavingsGoal = () => {
-  const { expenses, budget, dispatch, currency } = useContext(AppContext);
+  const { expenses, budget, dispatch, currency, savingsGoal } =
+    useContext(AppContext);
   const [isEditing, setIsEditing] = useState(false);
-  const [goalAmount, setGoalAmount] = useState(5000);
+  const [tempGoal, setTempGoal] = useState(savingsGoal);
 
   const totalExpenses = expenses.reduce((total, item) => {
     return total + item.amount;
   }, 0);
 
   const remaining = budget - totalExpenses;
-  const savingsProgress = remaining > 0 ? (remaining / goalAmount) * 100 : 0;
+  const savingsProgress = remaining > 0 ? (remaining / savingsGoal) * 100 : 0;
   const cappedProgress = Math.min(savingsProgress, 100);
 
   let progressBarColor = "bg-info";
@@ -22,6 +23,15 @@ const SavingsGoal = () => {
   }
 
   const handleSave = () => {
+    dispatch({
+      type: "SET_SAVINGS_GOAL",
+      payload: parseInt(tempGoal),
+    });
+    setIsEditing(false);
+  };
+
+  const handleCancel = () => {
+    setTempGoal(savingsGoal); // Reset to current goal
     setIsEditing(false);
   };
 
@@ -43,20 +53,29 @@ const SavingsGoal = () => {
                 type="number"
                 className="form-control form-control-sm"
                 style={{ width: "130px" }}
-                value={goalAmount}
-                onChange={(e) => setGoalAmount(parseInt(e.target.value))}
+                value={tempGoal}
+                onChange={(e) => setTempGoal(e.target.value)}
                 placeholder="Goal amount"
               />
               <button className="btn btn-primary btn-sm" onClick={handleSave}>
                 Save
               </button>
+              <button
+                className="btn btn-secondary btn-sm"
+                onClick={handleCancel}
+              >
+                Cancel
+              </button>
             </div>
           ) : (
             <button
               className="btn btn-outline-primary btn-sm"
-              onClick={() => setIsEditing(true)}
+              onClick={() => {
+                setTempGoal(savingsGoal);
+                setIsEditing(true);
+              }}
             >
-              Set Goal
+              Edit Goal
             </button>
           )}
         </div>
@@ -85,15 +104,15 @@ const SavingsGoal = () => {
             Goal:{" "}
             <strong>
               {currency}
-              {goalAmount}
+              {savingsGoal}
             </strong>
           </small>
         </div>
 
         <small className="text-muted d-block mt-2">
-          {remaining >= goalAmount
+          {remaining >= savingsGoal
             ? `🎉 Goal reached! You saved ${currency}${remaining}`
-            : `Need ${currency}${goalAmount - remaining} more to reach your goal`}
+            : `Need ${currency}${savingsGoal - remaining} more to reach your goal`}
         </small>
       </div>
     </div>
